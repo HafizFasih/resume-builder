@@ -35,8 +35,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
+//! LOADING BOXES MAGNITUDE
+var range = 50;
+if (window.innerWidth > 1000)
+    range = 50;
+else if (window.innerWidth < 1000 && window.innerWidth > 750)
+    range = 40;
+else if (window.innerWidth < 750 && window.innerWidth > 600)
+    range = 48;
+else if (window.innerWidth < 600 && window.innerWidth > 400)
+    range = 42;
+else
+    range = 54;
+console.log(range);
+// //! LOADING PAGE
 function loadingPage() {
-    var loadingPageBoxes = new Array(50).fill(null);
+    var loadingPageBoxes = new Array(range).fill(null);
     var loadingPageCon = document.getElementsByClassName("loading-page-parent")[0];
     loadingPageBoxes.forEach(function () {
         var newBox = document.createElement("div");
@@ -45,21 +59,22 @@ function loadingPage() {
     });
     var boxes = Array.from(loadingPageCon.getElementsByClassName("loading-boxes"));
     var count = 0;
-    var sampleArray = generateUniqueNumbers();
+    var sampleArray = generateUniqueNumbers(range);
     var delay = setInterval(function () {
         boxes[sampleArray[count]].classList.add("hidden");
         count++;
-        if (count === 50) {
+        if (count === range) {
             clearInterval(delay);
             boxes.forEach(function (box) { return box.remove(); });
             loadingPageCon.style.display = "none";
         }
     }, 80);
 }
-function generateUniqueNumbers() {
+// //! RANDOM NUMBERS
+function generateUniqueNumbers(range) {
     var _a;
     var numbers = [];
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < range; i++) {
         numbers.push(i);
     }
     for (var i = numbers.length - 1; i > 0; i--) {

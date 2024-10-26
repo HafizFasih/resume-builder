@@ -1,9 +1,18 @@
+//! LOADING BOXES MAGNITUDE
+let range: number = 50;
+if(window.innerWidth > 1000) range = 50;
+else if(window.innerWidth < 1000 && window.innerWidth > 750) range = 40;
+else if(window.innerWidth < 750 && window.innerWidth > 600) range = 48;
+else if(window.innerWidth < 600 && window.innerWidth > 400) range = 42;
+else range = 54;
+console.log(range);
+
+// //! LOADING PAGE
 function loadingPage() {
-  const loadingPageBoxes = new Array(50).fill(null);
+  const loadingPageBoxes = new Array(range).fill(null);
   const loadingPageCon = document.getElementsByClassName(
     "loading-page-parent"
   )[0];
-
   loadingPageBoxes.forEach(() => {
     const newBox: HTMLDivElement = document.createElement("div");
     newBox.classList.add("loading-boxes");
@@ -13,11 +22,11 @@ function loadingPage() {
     loadingPageCon.getElementsByClassName("loading-boxes")
   );
   let count: number = 0;
-  const sampleArray: number[] = generateUniqueNumbers();
+  const sampleArray: number[] = generateUniqueNumbers(range);
   const delay = setInterval(() => {
     boxes[sampleArray[count]].classList.add("hidden");
     count++;
-    if (count === 50) {
+    if (count === range) {
       clearInterval(delay);
       boxes.forEach((box) => box.remove());
       (loadingPageCon as HTMLElement).style.display = "none";
@@ -25,9 +34,10 @@ function loadingPage() {
   }, 80);
 }
 
-function generateUniqueNumbers(): number[] {
+// //! RANDOM NUMBERS
+function generateUniqueNumbers(range: number): number[] {
   const numbers: number[] = [];
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < range; i++) {
     numbers.push(i);
   }
   for (let i = numbers.length - 1; i > 0; i--) {
@@ -36,6 +46,7 @@ function generateUniqueNumbers(): number[] {
   }
   return numbers;
 }
+
 
 function cursorAnimation() {
   const button = document.getElementById("chasingLight");
