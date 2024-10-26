@@ -77,7 +77,7 @@ else if (window.innerWidth < 750 && window.innerWidth > 600)
 else if (window.innerWidth < 600 && window.innerWidth > 400)
     range = 42;
 else
-    range = 48;
+    range = 54;
 console.log(range);
 // //! LOADING PAGE
 function loadingPage() {
