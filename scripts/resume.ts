@@ -1,0 +1,311 @@
+window.onload = async () => {
+  loadingPage();
+  await new Promise((res) => setTimeout(res, 4000));
+  getProfileDataAnimation();
+  skillsArrangment();
+  headingAnimation();
+  getExperienceParagraph();
+  getEducationParagraph("education-first-paragraph");
+  getEducationParagraph("education-second-paragraph");
+  slideHeadings();
+  hobbiesAnimation();
+  socialItemsAnimation();
+};
+
+//! GET INNERWIDTH
+let headingTranslateValue: string = "";
+if (window.innerWidth >= 1000) headingTranslateValue = "-260%";
+else if (window.innerWidth < 1000 && window.innerWidth > 800)
+  headingTranslateValue = "-380%";
+else if (window.innerWidth <= 800 && window.innerWidth > 450)
+  headingTranslateValue = "-245%";
+else headingTranslateValue = "-185%";
+
+//! LOADING BOXES MAGNITUDE
+let range: number = 50;
+if(window.innerWidth > 1000) range = 50;
+else if(window.innerWidth < 1000 && window.innerWidth > 750) range = 40;
+else if(window.innerWidth < 750 && window.innerWidth > 600) range = 48;
+else if(window.innerWidth < 600 && window.innerWidth > 400) range = 42;
+else range = 48;
+console.log(range);
+
+// //! LOADING PAGE
+function loadingPage() {
+  const loadingPageBoxes = new Array(range).fill(null);
+  const loadingPageCon = document.getElementsByClassName(
+    "loading-page-parent"
+  )[0];
+  loadingPageBoxes.forEach(() => {
+    const newBox: HTMLDivElement = document.createElement("div");
+    newBox.classList.add("loading-boxes");
+    loadingPageCon.appendChild(newBox);
+  });
+  const boxes = Array.from(
+    loadingPageCon.getElementsByClassName("loading-boxes")
+  );
+  let count: number = 0;
+  const sampleArray: number[] = generateUniqueNumbers(range);
+  const delay = setInterval(() => {
+    boxes[sampleArray[count]].classList.add("hidden");
+    count++;
+    if (count === range) {
+      clearInterval(delay);
+      boxes.forEach((box) => box.remove());
+      (loadingPageCon as HTMLElement).style.display = "none";
+    }
+  }, 80);
+}
+
+// //! RANDOM NUMBERS
+function generateUniqueNumbers(range: number): number[] {
+  const numbers: number[] = [];
+  for (let i = 0; i < range; i++) {
+    numbers.push(i);
+  }
+  for (let i = numbers.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [numbers[i], numbers[randomIndex]] = [numbers[randomIndex], numbers[i]];
+  }
+  return numbers;
+}
+
+//! HEADING ANIMATION
+function headingAnimation() {
+  const headings = document.getElementsByClassName("head");
+  let count: number = 0;
+  const delay = setInterval(() => {
+    (<HTMLElement>headings[count]).style.transform = "translateY(0%)";
+    count++;
+    if (count === headings.length) clearInterval(delay);
+  }, 500);
+}
+
+//! SLIDE HEADINGS
+function slideHeadings() {
+  const heading = document.getElementsByClassName("heading");
+  let count: number = 0;
+  const delay = setInterval(() => {
+    (<HTMLElement>heading[count]).style.transform = `translate(${headingTranslateValue}, -50%)`;
+    count++;
+    if (count === heading.length) clearInterval(delay);
+  }, 200);
+}
+
+//! BAR ANIMATION
+function getBarAnimation() {
+  const skillBars = document.getElementsByClassName("bar");
+  let count: number = 0;
+  const delay = setInterval(() => {
+    skillBars[count].classList.toggle("translate-bar");
+    count++;
+    if (count === skillBars.length) clearInterval(delay);
+  }, 200);
+}
+//! SKILLS ARRANGMENT
+function skillsArrangment() {
+  const skillDetails = [
+    { name: "html", percentage: "90%" },
+    { name: "css", percentage: "95%" },
+    { name: "typescript", percentage: "98%" },
+    { name: "javascript", percentage: "97%" },
+    { name: "next", percentage: "85%" },
+    { name: "python", percentage: "85%" },
+    { name: "react", percentage: "90%" },
+  ];
+  skillDetails.map((val) => {
+    const skillBars = document.getElementById(val.name);
+    if (skillBars) skillBars.style.width = val.percentage;
+  });
+  getBarAnimation();
+}
+
+//! TRIGGER SKILLS ANIMATION ON CLICK
+const skillsHeading = document.getElementById("skills-heading");
+let skillsCondition: boolean = true;
+if (skillsHeading)
+  skillsHeading.addEventListener("click", () => {
+    getBarAnimation();
+    if (skillsCondition) {
+      skillsHeading.style.transform = "translate(0%, -50%)";
+      skillsCondition = false;
+    } else {
+      skillsHeading.style.transform = `translate(${headingTranslateValue}, -50%)`;
+      skillsCondition = true;
+    }
+  });
+
+//! EDUCATION PARAGRAPH
+function getEducationParagraph(className: string) {
+  const paragraph: string =
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi fugiat, inventore assumenda mollitia recusandae laudantium dolorum, vero placeat, nam et eos quasi molestias veniam. Reiciendis vitae vero explicabo, pariatur assumenda ipsa adipisci excepturi debitis.";
+  const educationFirstParaContainer = document.getElementsByClassName(
+    className
+  )[0] as HTMLElement;
+  for (let alphabet of paragraph) {
+    const letter = document.createElement("span");
+    letter.innerHTML = alphabet;
+    letter.classList.add("color-initial");
+    educationFirstParaContainer.appendChild(letter);
+  }
+  getEducationParaAnimation(true);
+}
+
+//! EDUCATION PARAGRAPGH ANIMATION
+function getEducationParaAnimation(direction: boolean) {
+  let count: number = 0;
+  const letters = document.getElementsByClassName("color-initial");
+  const delay = setInterval(() => {
+    if (direction) letters[count].classList.add("color-final");
+    else letters[letters.length - 1 - count].classList.remove("color-final");
+    count++;
+    if (count === letters.length) clearInterval(delay);
+  }, 10);
+}
+
+//! TRIGGER EDUCATION ANIMATION ON CLICK
+let direction: boolean = false;
+let educationCondition: boolean = true;
+const educationHeading = document.getElementById("education-heading");
+if (educationHeading)
+  educationHeading.addEventListener("click", () => {
+    getEducationParaAnimation(direction);
+    direction = !direction;
+    if (educationCondition) {
+      educationHeading.style.transform = "translate(0%, -50%)";
+      educationCondition = false;
+    } else {
+      educationHeading.style.transform = `translate(${headingTranslateValue}, -50%)`;
+      educationCondition = true;
+    }
+  });
+
+//! HOBBIES ANIMATION
+function hobbiesAnimation() {
+  const hobbies = document.getElementsByClassName("hobbies");
+  let count: number = 0;
+  switch (count) {
+    case 3:
+      count = 2;
+      break;
+    case 2:
+      count = 3;
+      break;
+  }
+  setInterval(() => {
+    if (count !== 0) hobbies[count - 1].classList.remove("hobbies-animation");
+    else hobbies[3].classList.remove("hobbies-animation");
+    hobbies[count].classList.add("hobbies-animation");
+    count++;
+    if (count === hobbies.length) {
+      count = 0;
+    }
+  }, 800);
+}
+
+//! SOCIAL ITEMS ANIMATION
+function socialItemsAnimation() {
+  const socialItems = document.getElementsByClassName("social-items");
+  let count: number = 0;
+  const delay = setInterval(() => {
+    socialItems[count].classList.toggle("translate-bar");
+    count++;
+    if (count === socialItems.length) clearInterval(delay);
+  }, 200);
+}
+//! TRIGGER SOCIAL ITEMS ANIMATION ON CLICK
+const socialHeading = document.getElementById("social-heading");
+let socialCondition: boolean = true;
+socialHeading?.addEventListener("click", () => {
+  if (socialCondition) {
+    socialHeading.style.transform = "translate(0%, -50%)";
+    socialCondition = false;
+  } else {
+    socialHeading.style.transform = `translate(${headingTranslateValue}, -50%)`;
+    socialCondition = true;
+  }
+  socialItemsAnimation();
+});
+
+//! TRIGGER HOBBIES ITEMS ANIMATION ON CLICK
+const hobbiesHeading = document.getElementById("hobbies-heading");
+let hobbiesCondition: boolean = true;
+hobbiesHeading?.addEventListener("click", () => {
+  if (hobbiesCondition) {
+    hobbiesHeading.style.transform = "translate(0%, -50%)";
+    hobbiesCondition = false;
+  } else {
+    hobbiesHeading.style.transform = `translate(${headingTranslateValue}, -50%)`;
+    hobbiesCondition = true;
+  }
+});
+
+//! GET EXPERIENCE PARAGRAPH
+function getExperienceParagraph() {
+  const paragraph: string =
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi fugiat, inventore assumenda mollitia recusandae laudantium dolorum, vero placeat, nam et eos quasi molestias veniam. Reiciendis vitae vero explicabo, pariatur assumenda ipsa adipisci excepturi debitis.consectetur adipisicing elit. Animi fugiat, inventore assumenda mollitia recusandae laudantium dolorum, vero placeat,";
+  const experienceParagraph = document.getElementsByClassName(
+    "experience-paragraph"
+  );
+  for (let alphabet of paragraph) {
+    const letter = document.createElement("span");
+    letter.innerHTML = alphabet;
+    letter.classList.add("color-initial1");
+    experienceParagraph[0].appendChild(letter);
+  }
+  getExperienceParaAnimation(true);
+}
+
+//! GET EXPERIENCE PARAGRAPGH ANIMATION
+function getExperienceParaAnimation(direction: boolean) {
+  let count: number = 0;
+  const letters = document.getElementsByClassName("color-initial1");
+  const delay = setInterval(() => {
+    if (direction) letters[count].classList.add("color-final1");
+    else letters[letters.length - 1 - count].classList.remove("color-final1");
+    count++;
+    if (count === letters.length) clearInterval(delay);
+  }, 10);
+}
+
+//! TRIGGER EXPERIENCE ITEMS ANIMATION ON CLICK
+const experienceHeading = document.getElementById("experience-heading");
+let experienceParaFlowDirection: boolean = false;
+let experienceCondition: boolean = true;
+experienceHeading?.addEventListener("click", () => {
+  getExperienceParaAnimation(experienceParaFlowDirection);
+  experienceParaFlowDirection = !experienceParaFlowDirection;
+  if (experienceCondition) {
+    experienceHeading.style.transform = "translate(0%, -50%)";
+    experienceCondition = false;
+  } else {
+    experienceHeading.style.transform = `translate(${headingTranslateValue}, -50%)`;
+    experienceCondition = true;
+  }
+});
+
+//! PROFILE NAME ANIMATION
+const profileName = document.getElementById("profile-name");
+const userName: string = "muhammad fasih";
+for (let letter of userName) {
+  const alphabet = document.createElement("span");
+  alphabet.innerText = letter;
+  alphabet.classList.add("letters");
+  profileName?.appendChild(alphabet);
+}
+
+//! PROFILE DATA ANIMATION
+function getProfileDataAnimation() {
+  const nameLetters = document.getElementsByClassName("letters");
+  let count: number = 0;
+  const delay = setInterval(() => {
+    (<HTMLElement>nameLetters[count]).style.transform = "translateY(-20%)";
+    count++;
+    if (count === nameLetters.length) clearInterval(delay);
+  }, 100);
+
+  const profileSkill = document.getElementById("profile-txt");
+  setTimeout(() => {
+    if (profileSkill) profileSkill.classList.add("translate-bar");
+  }, 1500);
+}
