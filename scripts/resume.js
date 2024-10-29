@@ -35,27 +35,81 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
+//! GETTING DATA
+var index = -1;
+var userDataInString = localStorage.getItem("formData");
+var userData = [];
+if (userDataInString) {
+    userData = JSON.parse(userDataInString);
+}
+else {
+    window.location.href = "form.html";
+}
+if (userData.length === 0)
+    window.location.href = "form.html";
+var resumeData = userData[userData.length - 1];
 window.onload = function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 loadingPage();
-                return [4 /*yield*/, new Promise(function (res) { return setTimeout(res, 4000); })];
+                return [4 /*yield*/, new Promise(function (res) { return setTimeout(res, 2900); })];
             case 1:
                 _a.sent();
+                setImage();
                 getProfileDataAnimation();
                 skillsArrangment();
                 headingAnimation();
                 getExperienceParagraph();
                 getEducationParagraph("education-first-paragraph");
-                getEducationParagraph("education-second-paragraph");
                 slideHeadings();
                 hobbiesAnimation();
                 socialItemsAnimation();
+                changeDataDynamic();
                 return [2 /*return*/];
         }
     });
 }); };
+//! DOWNLOAD DATA
+var downloadButton = document.getElementById("download");
+downloadButton === null || downloadButton === void 0 ? void 0 : downloadButton.addEventListener("click", function () {
+});
+//! FILTERING INDEX
+var editButton = document.getElementById("edit");
+editButton === null || editButton === void 0 ? void 0 : editButton.addEventListener("click", function () {
+    userData.filter(function (val, ind) {
+        if (val.name === resumeData.name)
+            index = ind;
+    })[0];
+    localStorage.setItem("index", "".concat(index));
+    window.location.href = "form.html";
+});
+//! REMOVE DATA
+var deleteButton = document.getElementById("remove");
+deleteButton === null || deleteButton === void 0 ? void 0 : deleteButton.addEventListener("click", function () {
+    var sampleArray = userData.filter(function (val) {
+        if (val.name !== resumeData.name)
+            return val;
+    });
+    localStorage.setItem("formData", JSON.stringify(sampleArray));
+    window.location.href = "index.html";
+});
+//! NAVIGATION BUTTON
+var navigationButton = document.getElementById("navigator");
+var switchButton = true;
+navigationButton === null || navigationButton === void 0 ? void 0 : navigationButton.addEventListener("click", function () {
+    var options = document.getElementById("options");
+    if (switchButton) {
+        if (options)
+            options.style.display = "flex";
+        switchButton = false;
+    }
+    else {
+        if (options)
+            options.style.display = "none";
+        switchButton = true;
+    }
+});
 //! GET INNERWIDTH
 var headingTranslateValue = "";
 if (window.innerWidth >= 1000)
@@ -78,7 +132,6 @@ else if (window.innerWidth < 600 && window.innerWidth > 400)
     range = 42;
 else
     range = 54;
-console.log(range);
 // //! LOADING PAGE
 function loadingPage() {
     var loadingPageBoxes = new Array(range).fill(null);
@@ -99,7 +152,7 @@ function loadingPage() {
             boxes.forEach(function (box) { return box.remove(); });
             loadingPageCon.style.display = "none";
         }
-    }, 80);
+    }, 50);
 }
 // //! RANDOM NUMBERS
 function generateUniqueNumbers(range) {
@@ -113,6 +166,29 @@ function generateUniqueNumbers(range) {
         _a = [numbers[randomIndex], numbers[i]], numbers[i] = _a[0], numbers[randomIndex] = _a[1];
     }
     return numbers;
+}
+//! SET IMAGE
+function setImage() {
+    var profilePicCon = document.getElementsByClassName("profile-pic-con")[0];
+    var image = document.createElement("img");
+    image.classList.add("profile-pic");
+    image.src = resumeData.imageURL
+        ? resumeData.imageURL
+        : "/assets/default-profile.svg";
+    profilePicCon.appendChild(image);
+}
+//! GET HOBBIES
+function changeDataDynamic() {
+    var getHobbies = document.getElementsByClassName("hobbies");
+    var count = 0;
+    for (var _i = 0, getHobbies_1 = getHobbies; _i < getHobbies_1.length; _i++) {
+        var hobby = getHobbies_1[_i];
+        hobby.innerHTML = "<h1>".concat(resumeData.hobbies[count], "</h1>");
+        count++;
+    }
+    var professionText = document.getElementById("profile-txt");
+    if (professionText)
+        professionText.innerText = resumeData.profession;
 }
 //! HEADING ANIMATION
 function headingAnimation() {
@@ -130,7 +206,7 @@ function slideHeadings() {
     var heading = document.getElementsByClassName("heading");
     var count = 0;
     var delay = setInterval(function () {
-        heading[count].style.transform = "translate(".concat(headingTranslateValue, ", -50%)");
+        (heading[count]).style.transform = "translate(".concat(headingTranslateValue, ", -50%)");
         count++;
         if (count === heading.length)
             clearInterval(delay);
@@ -139,29 +215,27 @@ function slideHeadings() {
 //! BAR ANIMATION
 function getBarAnimation() {
     var skillBars = document.getElementsByClassName("bar");
-    var count = 0;
-    var delay = setInterval(function () {
-        skillBars[count].classList.toggle("translate-bar");
-        count++;
-        if (count === skillBars.length)
-            clearInterval(delay);
-    }, 200);
+    if (skillBars.length > 0) {
+        var count_1 = 0;
+        var delay_1 = setInterval(function () {
+            skillBars[count_1].classList.toggle("translate-bar");
+            count_1++;
+            if (count_1 === skillBars.length)
+                clearInterval(delay_1);
+        }, 200);
+    }
 }
 //! SKILLS ARRANGMENT
 function skillsArrangment() {
-    var skillDetails = [
-        { name: "html", percentage: "90%" },
-        { name: "css", percentage: "95%" },
-        { name: "typescript", percentage: "98%" },
-        { name: "javascript", percentage: "97%" },
-        { name: "next", percentage: "85%" },
-        { name: "python", percentage: "85%" },
-        { name: "react", percentage: "90%" },
-    ];
-    skillDetails.map(function (val) {
+    resumeData.skills.map(function (val) {
+        var skillContainer = document.getElementsByClassName("skills-portion")[0];
+        var skillPortion = document.createElement("div");
+        skillPortion.classList.add("skills");
+        skillPortion.innerHTML = "\n    <h3>".concat(val.name, "</h3>\n    <span class=\"skill-bar\">\n    <span class=\"bar\" id=").concat(val.name, "></span>\n    </span>\n    ");
+        skillContainer.appendChild(skillPortion);
         var skillBars = document.getElementById(val.name);
         if (skillBars)
-            skillBars.style.width = val.percentage;
+            skillBars.style.width = "".concat(val.percentage, "%");
     });
     getBarAnimation();
 }
@@ -182,12 +256,14 @@ if (skillsHeading)
     });
 //! EDUCATION PARAGRAPH
 function getEducationParagraph(className) {
-    var paragraph = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi fugiat, inventore assumenda mollitia recusandae laudantium dolorum, vero placeat, nam et eos quasi molestias veniam. Reiciendis vitae vero explicabo, pariatur assumenda ipsa adipisci excepturi debitis.";
+    var paragraph = resumeData.education; //!
     var educationFirstParaContainer = document.getElementsByClassName(className)[0];
     for (var _i = 0, paragraph_1 = paragraph; _i < paragraph_1.length; _i++) {
         var alphabet = paragraph_1[_i];
         var letter = document.createElement("span");
         letter.innerHTML = alphabet;
+        if (alphabet === " ")
+            letter.style.margin = "0 3px";
         letter.classList.add("color-initial");
         educationFirstParaContainer.appendChild(letter);
     }
@@ -288,12 +364,14 @@ hobbiesHeading === null || hobbiesHeading === void 0 ? void 0 : hobbiesHeading.a
 });
 //! GET EXPERIENCE PARAGRAPH
 function getExperienceParagraph() {
-    var paragraph = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi fugiat, inventore assumenda mollitia recusandae laudantium dolorum, vero placeat, nam et eos quasi molestias veniam. Reiciendis vitae vero explicabo, pariatur assumenda ipsa adipisci excepturi debitis.consectetur adipisicing elit. Animi fugiat, inventore assumenda mollitia recusandae laudantium dolorum, vero placeat,";
+    var paragraph = resumeData.experience; //!
     var experienceParagraph = document.getElementsByClassName("experience-paragraph");
     for (var _i = 0, paragraph_2 = paragraph; _i < paragraph_2.length; _i++) {
         var alphabet = paragraph_2[_i];
         var letter = document.createElement("span");
         letter.innerHTML = alphabet;
+        if (alphabet === " ")
+            letter.style.margin = "0 3px";
         letter.classList.add("color-initial1");
         experienceParagraph[0].appendChild(letter);
     }
@@ -331,12 +409,14 @@ experienceHeading === null || experienceHeading === void 0 ? void 0 : experience
 });
 //! PROFILE NAME ANIMATION
 var profileName = document.getElementById("profile-name");
-var userName = "muhammad fasih";
+var userName = resumeData.name; //!
 for (var _i = 0, userName_1 = userName; _i < userName_1.length; _i++) {
     var letter = userName_1[_i];
     var alphabet = document.createElement("span");
     alphabet.innerText = letter;
     alphabet.classList.add("letters");
+    if (letter === " ")
+        alphabet.style.width = "10px";
     profileName === null || profileName === void 0 ? void 0 : profileName.appendChild(alphabet);
 }
 //! PROFILE DATA ANIMATION

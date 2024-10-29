@@ -5,13 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/resume.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </head>
   <body>
     <div class="loading-page-parent"></div>
     <main>
+      <section id="options">
+        <div id="options-menu">
+          <h1>options</h1>
+          <ul>
+            <li>
+              <span id="edit"></span>
+              <h3>edit</h3>
+            </li>
+            <li>
+              <span id="remove"></span>
+              <h3>remove</h3>
+            </li>
+            <li>
+              <span id="download"></span>
+              <h3>download</h3>
+            </li>
+            <li>
+              <span id="link"></span>
+              <h3>link</h3>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <button id="navigator"></button>
       <section class="main-section">
         <div class="profile">
-          <div class="profile-pic"></div>
+          <div class="profile-pic-con"></div>
           <div class="profile-details">
             <div id="profile-name"></div>
             <div class="profile-skills">
@@ -23,63 +48,18 @@
           <span class="heading" id="experience-heading">
             <h1 class="head">experience</h1>
           </span>
-          <div class="experience-paragraph"></div>
+          <div class="experience-paragraph wrap"></div>
         </div>
         <div class="portion skills-portion">
           <span class="heading" id="skills-heading">
             <h1 class="head">skills</h1>
           </span>
-          <div class="skills">
-            <h3>html</h3>
-            <span class="skill-bar">
-              <span class="bar" id="html"></span>
-            </span>
-          </div>
-          <div class="skills">
-            <h3>css</h3>
-            <span class="skill-bar">
-              <span class="bar" id="css"></span>
-            </span>
-          </div>
-          <div class="skills">
-            <h3>typescript</h3>
-            <span class="skill-bar">
-              <span class="bar" id="typescript"></span>
-            </span>
-          </div>
-          <div class="skills">
-            <h3>javascript</h3>
-            <span class="skill-bar">
-              <span class="bar" id="javascript"></span>
-            </span>
-          </div>
-          <div class="skills">
-            <h3>python</h3>
-            <span class="skill-bar">
-              <span class="bar" id="python"></span>
-            </span>
-          </div>
-          <div class="skills">
-            <h3>react js</h3>
-            <span class="skill-bar">
-              <span class="bar" id="react"></span>
-            </span>
-          </div>
-          <div class="skills">
-            <h3>next js</h3>
-            <span class="skill-bar">
-              <span class="bar" id="next"></span>
-            </span>
-          </div>
         </div>
         <div class="portion">
           <span class="heading" id="education-heading">
             <h1 class="head">education</h1>
           </span>
-          <h2>2024 - Future</h2>
-          <div class="paragraph education-first-paragraph"></div>
-          <h2>2020 - 2023</h2>
-          <div class="paragraph education-second-paragraph"></div>
+          <div class="paragraph education-first-paragraph wrap"></div>
         </div>
         <div class="portion">
           <span class="heading" id="hobbies-heading">
@@ -108,11 +88,21 @@
             <h1 class="head">social</h1>
           </span>
           <div class="social-container">
-            <span class="social-items facebook"></span>
-            <span class="social-items whatsapp"></span>
-            <span class="social-items github"></span>
-            <span class="social-items linkedin"></span>
-            <span class="social-items twitter"></span>
+            <span class="social-items facebook"
+              ><a href="https://www.facebook.com/" target="_blank"></a
+            ></span>
+            <span class="social-items whatsapp"
+              ><a href="https://www.whatsapp.com/" target="_blank"></a
+            ></span>
+            <span class="social-items github"
+              ><a href="https://www.github.com/" target="_blank"></a
+            ></span>
+            <span class="social-items linkedin"
+              ><a href="https://www.linkedin.com/" target="_blank"></a
+            ></span>
+            <span class="social-items twitter"
+              ><a href="https://www.twitter.com/" target="_blank"></a
+            ></span>
           </div>
         </div>
       </section>

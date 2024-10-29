@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/form.css" />
+  </head>
+  <body>
+    <div class="loading-page-parent"></div>
+    <main>
+      <section class="main-section">
+        <div class="animation left"></div>
+        <div class="animation right"></div>
+        <form id="userForm">
+          <div class="input-container">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="response" required />
+          </div>
+          <div class="input-container">
+            <label for="profession">Profession:</label>
+            <input type="text" id="profession" name="profession" required />
+          </div>
+          <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="input-container">
+            <label for="contact">Contact:</label>
+            <input type="number" id="contact" name="contact" required />
+          </div>
+          <div class="input-container">
+            <label for="facebook">Facebook:</label>
+            <input type="url" id="facebook" name="facebook" required />
+          </div>
+          <div class="input-container">
+            <label for="linkedin">Linkedin:</label>
+            <input type="url" id="linkedin" name="linkedin" required />
+          </div>
+          <div class="input-container">
+            <label for="experience">Experience:</label>
+            <textarea
+              id="experience"
+              name="experience"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <div class="input-container">
+            <label for="education">Education:</label>
+            <textarea
+              id="education"
+              name="education"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <div class="input-container">
+            <label for="skills">Skills:</label>
+            <div id="skills">
+              <span>
+                <input
+                  type="text"
+                  placeholder="Skill (e.g., HTML)"
+                  class="skills-req"
+                />
+                <input
+                  type="number"
+                  placeholder="Percentage (e.g., 80)"
+                  class="skills-req"
+                />
+              </span>
+              <button type="button" id="addSkill"></button>
+            </div>
+            <ul id="skillsList"></ul>
+          </div>
+          <div class="input-container hobbies">
+            <label for="hobbies">Hobbies:</label>
+            <div class="">
+              <input
+                type="text"
+                id="hobby1"
+                class="hobbies-input"
+                placeholder="Hobby 1"
+                required
+              />
+              <input
+                type="text"
+                id="hobby2"
+                class="hobbies-input"
+                placeholder="Hobby 2"
+                required
+              />
+            </div>
+            <div class="">
+              <input
+                type="text"
+                id="hobby3"
+                class="hobbies-input"
+                placeholder="Hobby 3"
+                required
+              />
+              <input
+                type="text"
+                id="hobby4"
+                class="hobbies-input"
+                placeholder="Hobby 4"
+                required
+              />
+            </div>
+          </div>
+          <div class="input-container fileCon">
+          <input type="file" id="fileInput" accept="image/*" />
+          <span id="fileSpan">
+            <h4>upload image</h4>
+          </span>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
+    <script src="/scripts/form.js" type="module"></script>
+  </body>
+</html>

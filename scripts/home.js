@@ -47,7 +47,6 @@ else if (window.innerWidth < 600 && window.innerWidth > 400)
     range = 42;
 else
     range = 54;
-console.log(range);
 // //! LOADING PAGE
 function loadingPage() {
     var loadingPageBoxes = new Array(range).fill(null);
@@ -68,7 +67,7 @@ function loadingPage() {
             boxes.forEach(function (box) { return box.remove(); });
             loadingPageCon.style.display = "none";
         }
-    }, 80);
+    }, 50);
 }
 // //! RANDOM NUMBERS
 function generateUniqueNumbers(range) {
@@ -100,6 +99,9 @@ function getTextAnimation() {
         var letter = document.createElement("span");
         letter.classList.add("text");
         letter.innerText = val;
+        if (val === " ") {
+            letter.style.width = "2vw";
+        }
         textContainer.appendChild(letter);
     });
     var count = 0;
@@ -116,7 +118,7 @@ window.onload = function () { return __awaiter(_this, void 0, void 0, function (
             case 0:
                 loadingPage();
                 cursorAnimation();
-                return [4 /*yield*/, new Promise(function (res) { return setTimeout(res, 4000); })];
+                return [4 /*yield*/, new Promise(function (res) { return setTimeout(res, 2900); })];
             case 1:
                 _a.sent();
                 getTextAnimation();

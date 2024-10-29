@@ -1,11 +1,10 @@
 //! LOADING BOXES MAGNITUDE
 let range: number = 50;
-if(window.innerWidth > 1000) range = 50;
-else if(window.innerWidth < 1000 && window.innerWidth > 750) range = 40;
-else if(window.innerWidth < 750 && window.innerWidth > 600) range = 48;
-else if(window.innerWidth < 600 && window.innerWidth > 400) range = 42;
+if (window.innerWidth > 1000) range = 50;
+else if (window.innerWidth < 1000 && window.innerWidth > 750) range = 40;
+else if (window.innerWidth < 750 && window.innerWidth > 600) range = 48;
+else if (window.innerWidth < 600 && window.innerWidth > 400) range = 42;
 else range = 54;
-console.log(range);
 
 // //! LOADING PAGE
 function loadingPage() {
@@ -31,7 +30,7 @@ function loadingPage() {
       boxes.forEach((box) => box.remove());
       (loadingPageCon as HTMLElement).style.display = "none";
     }
-  }, 80);
+  }, 50);
 }
 
 // //! RANDOM NUMBERS
@@ -46,7 +45,6 @@ function generateUniqueNumbers(range: number): number[] {
   }
   return numbers;
 }
-
 
 function cursorAnimation() {
   const button = document.getElementById("chasingLight");
@@ -68,6 +66,9 @@ function getTextAnimation() {
     const letter = document.createElement("span");
     letter.classList.add("text");
     letter.innerText = val;
+    if (val === " ") {
+      letter.style.width = "2vw";
+    }
     textContainer.appendChild(letter);
   });
   let count: number = 0;
@@ -80,6 +81,6 @@ function getTextAnimation() {
 window.onload = async () => {
   loadingPage();
   cursorAnimation();
-  await new Promise((res) => setTimeout(res, 4000));
+  await new Promise((res) => setTimeout(res, 2900));
   getTextAnimation();
 };

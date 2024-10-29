@@ -6,7 +6,7 @@
 }
 html,
 body {
-  background: #000;
+  background: black;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -17,6 +17,13 @@ body {
   background-color: rgb(29, 117, 4);
   position: relative;
   z-index: 1000;
+}
+.loading-boxes:hover {
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  cursor: pointer;
+  background-color: rgb(4, 251, 4);
+  box-shadow: 0px 0px 5px rgb(4, 251, 4), 0px 0px 25px rgb(4, 251, 4),
+    0px 0px 50px rgb(4, 251, 4), 0px 0px 200px rgb(4, 251, 4);
 }
 .loading-page-parent {
   position: fixed;
@@ -85,40 +92,39 @@ a button:hover {
     0px 0px 50px rgb(4, 251, 4), 0px 0px 200px rgb(4, 251, 4);
   -webkit-box-reflect: below 0%
     linear-gradient(transparent, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
-  cursor: pointer;  
+  cursor: pointer;
   color: black;
 }
-.btn-container{
+.btn-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10%;
   width: 70vw;
 }
-.text-container{
+.text-container {
+  height: 25vh;
   display: flex;
+  flex-wrap: wrap;
   align-items: start;
   justify-content: center;
-  height: 20vh;
-  width: 85vw;
   overflow: hidden;
   cursor: pointer;
 }
-.text-container span:hover{
+.text-container span:hover {
   -webkit-box-reflect: below -45% linear-gradient(transparent, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
-.text{
-  width: 55px; 
+.text {
   color: rgb(4, 251, 4);
   font-size: 60px;
   font-weight: bold;
   transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    display: flex;
   transform: translateY(200%);
   line-height: normal;
   text-transform: uppercase;
   -webkit-box-reflect: below -45% linear-gradient(transparent, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
 }
-.translate{
+
+.translate {
   transform: translateY(0%);
 }
