@@ -122,7 +122,50 @@ window.onload = function () { return __awaiter(_this, void 0, void 0, function (
             case 1:
                 _a.sent();
                 getTextAnimation();
+                removeText();
                 return [2 /*return*/];
         }
     });
 }); };
+function removeText() {
+    if (window.innerWidth <= 880) {
+        var parentDiv = document.getElementsByClassName("text-container")[0];
+        if (parentDiv) {
+            parentDiv.style.display = "none";
+            parentDiv.classList.remove("text-container");
+            //? creation
+            ["welcome", "to my", "resume builder"].map(function (val, ind) {
+                var container = document.createElement("span");
+                container.classList.add("text-container");
+                container.style.height = "auto";
+                var mainDiv = document.getElementsByClassName("text-grand-container")[0];
+                mainDiv.appendChild(container);
+                for (var _i = 0, val_1 = val; _i < val_1.length; _i++) {
+                    var alphabet = val_1[_i];
+                    var letter = document.createElement("span");
+                    letter.classList.add("text");
+                    letter.classList.add("".concat(ind));
+                    letter.innerText = alphabet;
+                    if (alphabet === " ")
+                        letter.style.width = "2vw";
+                    container.appendChild(letter);
+                }
+            });
+            //? animation
+            var textContainers = document.getElementsByClassName("text-container");
+            var _loop_1 = function (i) {
+                var children = document.getElementsByClassName("".concat(i));
+                var count = 0;
+                var delay = setInterval(function () {
+                    children[count].classList.add("translate");
+                    count++;
+                    if (count === children.length)
+                        clearInterval(delay);
+                }, 50);
+            };
+            for (var i = 0; i < textContainers.length; i++) {
+                _loop_1(i);
+            }
+        }
+    }
+}

@@ -78,9 +78,50 @@ function getTextAnimation() {
     if (count === text.length) clearInterval(animation);
   }, 50);
 }
+
 window.onload = async () => {
   loadingPage();
   cursorAnimation();
   await new Promise((res) => setTimeout(res, 2900));
   getTextAnimation();
+  removeText();
 };
+function removeText() {
+  if (window.innerWidth <= 880) {
+    const parentDiv = document.getElementsByClassName(
+      "text-container"
+    )[0] as HTMLDivElement;
+    if (parentDiv) {
+      parentDiv.style.display = "none";
+      parentDiv.classList.remove("text-container");
+
+      //? creation
+      ["welcome", "to my", "resume builder"].map((val, ind) => {
+        const container = document.createElement("span");
+        container.classList.add("text-container");
+        container.style.height = "auto";
+        const mainDiv = document.getElementsByClassName("text-grand-container")[0] as HTMLElement;
+        mainDiv.appendChild(container);
+        for (let alphabet of val) {
+          const letter = document.createElement("span");
+          letter.classList.add("text");
+          letter.classList.add(`${ind}`);
+          letter.innerText = alphabet;
+          if (alphabet === " ") letter.style.width = "2vw";
+          container.appendChild(letter);
+        }
+      });
+      //? animation
+      const textContainers = document.getElementsByClassName("text-container");
+      for (let i = 0; i < textContainers.length; i++) {
+        const children = document.getElementsByClassName(`${i}`);
+        let count: number = 0;
+        const delay = setInterval(() => {
+          (<HTMLElement>children[count]).classList.add("translate");
+          count++
+          if(count === children.length) clearInterval(delay);
+        }, 50);    
+      }
+    }
+  }
+}

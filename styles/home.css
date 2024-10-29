@@ -18,13 +18,6 @@ body {
   position: relative;
   z-index: 1000;
 }
-.loading-boxes:hover {
-  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-  cursor: pointer;
-  background-color: rgb(4, 251, 4);
-  box-shadow: 0px 0px 5px rgb(4, 251, 4), 0px 0px 25px rgb(4, 251, 4),
-    0px 0px 50px rgb(4, 251, 4), 0px 0px 200px rgb(4, 251, 4);
-}
 .loading-page-parent {
   position: fixed;
   z-index: 1000;
@@ -34,6 +27,43 @@ body {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(5, 1fr);
+}
+@media (max-width: 1000px) {
+  .loading-page-parent {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+@media (max-width: 750px) {
+  .loading-page-parent {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .loading-page-parent {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+}
+@media (max-width: 450px) {
+  .loading-page-parent {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+  }
+}
+@media (max-width: 400px) {
+  .loading-page-parent {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+  }
+}
+.loading-boxes:hover {
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  cursor: pointer;
+  background-color: rgb(4, 251, 4);
+  box-shadow: 0px 0px 5px rgb(4, 251, 4), 0px 0px 25px rgb(4, 251, 4),
+    0px 0px 50px rgb(4, 251, 4), 0px 0px 200px rgb(4, 251, 4);
 }
 .hidden {
   scale: 0.8;
@@ -75,6 +105,7 @@ main {
   position: relative;
   z-index: 10;
 }
+
 a button {
   padding: 12px 24px;
   background-color: rgb(31, 125, 6);
@@ -86,6 +117,7 @@ a button {
   font-weight: 600;
   color: rgb(4, 251, 4);
 }
+:-moz-user-disabled
 a button:hover {
   background-color: rgb(4, 251, 4);
   box-shadow: 0px 0px 5px rgb(4, 251, 4), 0px 0px 25px rgb(4, 251, 4),
@@ -111,6 +143,11 @@ a button:hover {
   overflow: hidden;
   cursor: pointer;
 }
+.text-grand-container{
+  display: flex;
+  flex-direction: column;
+}
+
 .text-container span:hover {
   -webkit-box-reflect: below -45% linear-gradient(transparent, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
@@ -124,7 +161,31 @@ a button:hover {
   text-transform: uppercase;
   -webkit-box-reflect: below -45% linear-gradient(transparent, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
 }
-
+@media(max-width: 1050px){
+  .text{
+    font-size: 50px;
+  }
+}
+@media (max-width:880px) {
+  .text{
+    font-size: 40px;
+  }
+  a button{
+    padding: 10px 18px;
+    font-size: 16px;
+  }
+}
+@media (max-width:500px) {
+  a button{
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+}
+@media (max-width:400px) {
+  .text{
+    font-size: 35px;
+  }
+}
 .translate {
   transform: translateY(0%);
 }
