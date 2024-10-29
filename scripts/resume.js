@@ -70,10 +70,14 @@ window.onload = function () { return __awaiter(_this, void 0, void 0, function (
         }
     });
 }); };
-//! DOWNLOAD DATA
-var downloadButton = document.getElementById("download");
-downloadButton === null || downloadButton === void 0 ? void 0 : downloadButton.addEventListener("click", function () {
-});
+//! COMING SOON
+var soon = document.getElementsByClassName("soon");
+for (var _i = 0, soon_1 = soon; _i < soon_1.length; _i++) {
+    var i = soon_1[_i];
+    i === null || i === void 0 ? void 0 : i.addEventListener("click", function () {
+        alert("coming soon");
+    });
+}
 //! FILTERING INDEX
 var editButton = document.getElementById("edit");
 editButton === null || editButton === void 0 ? void 0 : editButton.addEventListener("click", function () {
@@ -410,8 +414,8 @@ experienceHeading === null || experienceHeading === void 0 ? void 0 : experience
 //! PROFILE NAME ANIMATION
 var profileName = document.getElementById("profile-name");
 var userName = resumeData.name; //!
-for (var _i = 0, userName_1 = userName; _i < userName_1.length; _i++) {
-    var letter = userName_1[_i];
+for (var _a = 0, userName_1 = userName; _a < userName_1.length; _a++) {
+    var letter = userName_1[_a];
     var alphabet = document.createElement("span");
     alphabet.innerText = letter;
     alphabet.classList.add("letters");

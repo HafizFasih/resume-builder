@@ -105,6 +105,19 @@ main {
   color: rgb(4, 251, 4);
   overflow: hidden;
 }
+@media (max-width: 900px) {
+  .main-section{
+    width: 80vw;
+  }
+}
+@media (max-width: 600px) {
+  .main-section{
+    width: 85vw;
+  }
+  main{
+    padding: 5vh 0px;
+  }
+}
 .animation{
   height: 100%;
   width: 50%;
@@ -153,7 +166,7 @@ textarea {
 input::placeholder {
   color: #13843ba5;
 }
-button {
+#form-button{
   margin-top: 12px;
   padding: 10px;
   background-color: rgb(4, 251, 4);
@@ -209,6 +222,8 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   border: none;
+  background-color: rgb(4, 251, 4);
+  margin-top: 5px;
 }
 .hobbies {
   display: flex;
@@ -238,7 +253,7 @@ button {
   height: 100%;
   width: 100%;
 }
-#fileSpan {
+#fileSpan{
   border: 1px solid #13843ba5;
   position: absolute;
   top: 0;
@@ -257,5 +272,28 @@ button {
   position: relative;
   width: 30vh;
   height: 8vh;
-  
+}
+@media (max-width: 600px){
+  .fileCon{
+    width: 20vh;
+    height: 5vh;
+  }
+  #fileSpan h4{
+    font-size: 12px;
+  }
+  .main-section{
+    padding: 5vh 5vw;
+  }
+  form{
+    gap: 2vh;
+  }
+  #form-button{
+    margin-top: 8px;
+    font-size: 16px;
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

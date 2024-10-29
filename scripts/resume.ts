@@ -43,10 +43,11 @@ window.onload = async () => {
   changeDataDynamic();
 };
 
-//! DOWNLOAD DATA
-const downloadButton = document.getElementById("download");
-downloadButton?.addEventListener("click", () => {
- 
+//! COMING SOON
+const soon = document.getElementsByClassName("soon");
+for(let i of soon)
+i?.addEventListener("click", () => {
+alert("coming soon")
 });
 
 //! FILTERING INDEX

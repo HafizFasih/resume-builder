@@ -15,7 +15,13 @@
         <form id="userForm">
           <div class="input-container">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" class="response" required />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="response"
+              required
+            />
           </div>
           <div class="input-container">
             <label for="profession">Profession:</label>
@@ -59,14 +65,10 @@
             <label for="skills">Skills:</label>
             <div id="skills">
               <span>
-                <input
-                  type="text"
-                  placeholder="Skill (e.g., HTML)"
-                  class="skills-req"
-                />
+                <input type="text" placeholder="Skill" class="skills-req" />
                 <input
                   type="number"
-                  placeholder="Percentage (e.g., 80)"
+                  placeholder="Percentage"
                   class="skills-req"
                 />
               </span>
@@ -110,12 +112,12 @@
             </div>
           </div>
           <div class="input-container fileCon">
-          <input type="file" id="fileInput" accept="image/*" />
-          <span id="fileSpan">
-            <h4>upload image</h4>
-          </span>
+            <input type="file" id="fileInput" accept="image/*" />
+            <span id="fileSpan">
+              <h4>upload image</h4>
+            </span>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" id="form-button">Submit</button>
         </form>
       </section>
     </main>
