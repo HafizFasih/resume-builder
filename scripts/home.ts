@@ -79,13 +79,6 @@ function getTextAnimation() {
   }, 50);
 }
 
-window.onload = async () => {
-  loadingPage();
-  cursorAnimation();
-  await new Promise((res) => setTimeout(res, 2900));
-  getTextAnimation();
-  removeText();
-};
 function removeText() {
   if (window.innerWidth <= 880) {
     const parentDiv = document.getElementsByClassName(
@@ -100,7 +93,9 @@ function removeText() {
         const container = document.createElement("span");
         container.classList.add("text-container");
         container.style.height = "auto";
-        const mainDiv = document.getElementsByClassName("text-grand-container")[0] as HTMLElement;
+        const mainDiv = document.getElementsByClassName(
+          "text-grand-container"
+        )[0] as HTMLElement;
         mainDiv.appendChild(container);
         for (let alphabet of val) {
           const letter = document.createElement("span");
@@ -118,10 +113,18 @@ function removeText() {
         let count: number = 0;
         const delay = setInterval(() => {
           (<HTMLElement>children[count]).classList.add("translate");
-          count++
-          if(count === children.length) clearInterval(delay);
-        }, 50);    
+          count++;
+          if (count === children.length) clearInterval(delay);
+        }, 50);
       }
     }
   }
 }
+
+window.onload = async () => {
+  loadingPage();
+  cursorAnimation();
+  await new Promise((res) => setTimeout(res, 2900));
+  getTextAnimation();
+  removeText();
+};
