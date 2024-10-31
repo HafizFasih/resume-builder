@@ -503,7 +503,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 4vh;
+  gap: 5vh;
 }
 #options-menu ul li {
   height: 100px;
