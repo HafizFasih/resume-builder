@@ -148,6 +148,11 @@ label {
   font-weight: bold;
   color: rgb(4, 251, 4);
 }
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f0f0f0 inset; 
+  box-shadow: 0 0 0 1000px #000 inset;
+  -webkit-text-fill-color: #13843b; 
+}
 
 input[type="text"],
 input[type="number"],
